@@ -13,7 +13,7 @@ app.use('/jquery-datepicker', express.static(path.join(__dirname, "/node_modules
 app.post('/get-difference', (req, res) => {
   if (!req.body.name || !req.body.birthdate) {
     res.status(400);
-    res.send("Name and Date of Birth are required fields!");
+    return res.send("Name and Date of Birth are required fields!");
   }
 
   const currentDate = moment();
@@ -22,20 +22,20 @@ app.post('/get-difference', (req, res) => {
   // Let's check birthdate input
   if (!birthdate.isValid()) {
     res.status(400);
-    res.send("Invalid birthdate format!");
+    return res.send("Invalid birthdate format!");
   }
 
   // Let's check if birthday date is invalid - higher than today - born in the future?
   if (birthdate.isAfter(currentDate)) {
     res.status(400);
-    res.send(`Back from the future? Today is ${currentDate.format("YYYY-DD-MM")}`);
+    return res.send(`Back from the future? Today is ${currentDate.format("YYYY-DD-MM")}`);
   }
 
   res.status(200);
 
   // Let's see if we have a birthday celebrant :)
   if (currentDate.diff(birthdate, 'days') === 0) {
-    res.send(`Hey ${req.body.name}, your birthday is actually today! Happy birthday!`);
+    return res.send(`Hey ${req.body.name}, your birthday is actually today! Happy birthday!`);
   }
 
   const personAge = currentDate.diff(birthdate, 'years');
@@ -44,7 +44,7 @@ app.post('/get-difference', (req, res) => {
   const monthsDiff = nextBirthdayDate.diff(currentDate, 'months');
   const daysDiff = nextBirthdayDate.subtract(monthsDiff, 'months').diff(currentDate, 'days');
 
-  res.send(
+  return res.send(
   `Hey ${req.body.name}, your birthday is in ${monthsDiff} months and ${daysDiff} days!`
   );
 });
