@@ -1,0 +1,14 @@
+.container {
+  width: 500px;
+  margin: auto;
+}
+.container .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container .form .input-container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
