@@ -18,7 +18,6 @@ app.post('/get-difference', (req, res) => {
 
   const currentDate = moment();
   const birthdate = moment(req.body.birthdate, moment.ISO_8601);
-
   // Let's check birthdate input
   if (!birthdate.isValid()) {
     res.status(400);
@@ -34,7 +33,8 @@ app.post('/get-difference', (req, res) => {
   res.status(200);
 
   // Let's see if we have a birthday celebrant :)
-  if (currentDate.diff(birthdate, 'days') === 0) {
+  const checkIfToday = moment(birthdate).year(currentDate.format("Y"));
+  if (currentDate.isSame(checkIfToday, 'day')) {
     return res.send(`Hey ${req.body.name}, your birthday is actually today! Happy birthday!`);
   }
 
