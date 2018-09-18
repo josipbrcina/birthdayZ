@@ -32,6 +32,8 @@
       {
         dateFormat: 'yy-mm-dd',
         maxDate: 0,
+        changeMonth: true,
+        changeYear: true
       }
     );
     $("input").prop('required',true);
@@ -40,7 +42,6 @@
       e.preventDefault(); // Avoid to execute the actual submit of the form.
       var form = $(this);
       var url = form.attr('action');
-      console.log(form.serialize());
       $.ajax({
         type: "POST",
         url: url,

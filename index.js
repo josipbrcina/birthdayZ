@@ -18,6 +18,7 @@ app.post('/get-difference', (req, res) => {
 
   const currentDate = moment();
   const birthdate = moment(req.body.birthdate, moment.ISO_8601);
+
   // Let's check birthdate input
   if (!birthdate.isValid()) {
     res.status(400);
