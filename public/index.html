@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <form class="form" action="/get-difference" method="post">
+        <form id="birthdate-form" class="form" action="/get-difference" method="post">
             <div class="input-container">
                 <label for="name">Name</label>
                 <input id="name" name="name"/>
@@ -28,7 +28,32 @@
 <script>
   $(function () {
     jqueryDatepicker($);
-    $("#birthdate").datepicker();
+    $("#birthdate").datepicker(
+      {
+        dateFormat: 'yy-mm-dd',
+        maxDate: 0,
+      }
+    );
+    $("input").prop('required',true);
+
+    $("#birthdate-form").submit(function(e) {
+      e.preventDefault(); // Avoid to execute the actual submit of the form.
+      var form = $(this);
+      var url = form.attr('action');
+      console.log(form.serialize());
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: form.serialize(), // Serializes the form's elements.
+        success: function (data)
+        {
+          alert(data);
+        },
+        error: function (xhr) {
+          alert(xhr.responseText);
+        }
+      });
+    });
   });
 </script>
 </html>

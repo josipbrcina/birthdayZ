@@ -36,6 +36,7 @@
     text-align: center;
     text-shadow: none;
     border-color: transparent;
+    cursor: pointer;
 }
 .container .form .submit-container button:hover {
     font-weight: 600;
