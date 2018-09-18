@@ -72,3 +72,34 @@ body {
     background-color: #187160;
     box-shadow: 0 4px #10be9f;
 }
+
+#ui-datepicker-div {
+    width: 480px;
+    height: auto;
+    font: 20px MuseoSans;
+    border: 1px solid #187160;
+}
+
+.ui-datepicker-calendar a.ui-state-default {
+    background: #10be9f;
+}
+.ui-datepicker .ui-datepicker-title {
+    text-align: center;
+    color: #FFFFFF;
+    background: #187160;
+}
+
+.ui-datepicker-calendar td.ui-datepicker-today a {
+    background: #187160;
+    color: #ffffff;
+    font-weight: 600;
+}
+.ui-datepicker-calendar a.ui-state-hover {
+    background: #187160;
+    color: #ffffff;
+    font-weight: 600;
+}
+.ui-datepicker-calendar a.ui-state-active {
+    background: #187160;
+}
+
