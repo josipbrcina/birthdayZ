@@ -28,13 +28,12 @@ body {
     flex-direction: column;
 }
 .container .form .input-container label {
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     font-size: 25px;
-    height: 15px;
 }
 .container .form .input-container input {
-    width: 490px;
-    height: 45px;
+    width: 468px;
+    height: 33px;
     border: 1px solid #969696;
     border-radius: 10px;
     padding: 10px;
@@ -44,7 +43,7 @@ body {
     outline: none;
 }
 .container .form .submit-container {
-    padding: 15px;
+    padding: 0;
 }
 .container .form .submit-container button {
     background-color: #10be9f;
