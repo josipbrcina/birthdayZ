@@ -7,13 +7,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use('/jquery', express.static(path.join(__dirname, "/node_modules/jquery/dist/")));
-app.use('/jquery-datepicker', express.static(path.join(__dirname, "/node_modules/jquery-datepicker/")));
+app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dist/')));
+app.use('/jquery-datepicker', express.static(path.join(__dirname, '/node_modules/jquery-datepicker/')));
 
 app.post('/get-difference', (req, res) => {
   if (!req.body.name || !req.body.birthdate) {
     res.status(400);
-    return res.send("Name and Date of Birth are required fields!");
+    return res.send('Name and Date of Birth are required fields!');
   }
 
   const currentDate = moment();
@@ -21,19 +21,19 @@ app.post('/get-difference', (req, res) => {
   // Let's check birthdate input
   if (!birthdate.isValid()) {
     res.status(400);
-    return res.send("Invalid birthdate format!");
+    return res.send('Invalid birthdate format!');
   }
 
   // Let's check if birthday date is invalid - higher than today - born in the future?
   if (birthdate.isAfter(currentDate)) {
     res.status(400);
-    return res.send(`Back from the future? Today is ${currentDate.format("YYYY-DD-MM")}`);
+    return res.send(`Back from the future? Today is ${currentDate.format('YYYY-DD-MM')}`);
   }
 
   res.status(200);
 
   // Let's see if we have a birthday celebrant :)
-  const checkIfToday = moment(birthdate).year(currentDate.format("Y"));
+  const checkIfToday = moment(birthdate).year(currentDate.format('Y'));
   if (currentDate.isSame(checkIfToday, 'day')) {
     return res.send(`Hey ${req.body.name}, your birthday is actually today! Happy birthday!`);
   }
@@ -45,7 +45,7 @@ app.post('/get-difference', (req, res) => {
   const daysDiff = nextBirthdayDate.subtract(monthsDiff, 'months').diff(currentDate, 'days');
 
   return res.send(
-  `Hey ${req.body.name}, your birthday is in ${monthsDiff} months and ${daysDiff} days!`
+    `Hey ${req.body.name}, your birthday is in ${monthsDiff} months and ${daysDiff} days!`,
   );
 });
 
